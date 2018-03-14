@@ -66,35 +66,40 @@ Class Cinema {
             );
             register_taxonomy_for_object_type( 'genre', 'film' );
         };
+        
+
         add_action('add_meta_boxes','initialisation_metaboxes');
         function initialisation_metaboxes(){
             add_meta_box('film_real', 'Réalisateur', 'meta_real', 'film', 'normal');
             add_meta_box('film_duree', 'Durée', 'meta_duree', 'film', 'normal');
         }
-        function meta_real(){
+
+        function meta_real($post){
+            $real = get_post_meta($post->ID,'realisateur',true);
             echo '<label for="realisateur">Nom : </label>';
-            echo '<input id="realisateur" type="text" name="realisateur" placeholder="Entrez le nom" required/>';
+            echo '<input id="realisateur" type="text" name="realisateur" placeholder="Entrez le nom" value="'.$real.'" required/>';
         }
-        function meta_duree(){
+        function meta_duree($post){
+            $duree = get_post_meta($post->ID,'duree',true);
             echo '<label for="duree">Durée : </label>';
-            echo '<input id="duree" type="text" name="duree" placeholder="Entrer la durée du film" required/>';
+            echo '<input id="duree" type="text" name="duree" placeholder="Entrer la durée du film" value="'.$duree.'" required/>';
 
         }
 
         add_action('save_post','save_metaboxes');
-
-        function save_metaboxes($post_ID){
+        var_dump('hello');
+        function save_metaboxes($post_id){
 
             // si la metabox est définie, on sauvegarde sa valeur
-
-            if(isset($_POST['realisateur']) && isset($_POST['duree'])){
-
-                update_post_meta($post_ID,'duree', esc_html($_POST['duree']));
-                update_post_meta($post_ID,'realisateur', esc_html($_POST['realisateur']));
-
+            var_dump('coucuo');
+            if(isset($_POST['realisateur'])){
+                update_post_meta($post_id,'realisateur', esc_html($_POST['realisateur']));
+            }
+            if(isset($_POST['duree'])){
+                update_post_meta($post_id,'duree', esc_html($_POST['duree']));
             }
         }
-        add_action('save_post', 'save_metaboxes');
+
     }
 }
 //On instancie le nouveau plugin !
