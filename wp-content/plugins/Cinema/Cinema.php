@@ -66,6 +66,20 @@ Class Cinema {
         );
         register_taxonomy_for_object_type( 'genre', 'film' );
       };
+            add_action('add_meta_boxes','initialisation_metaboxes');
+function initialisation_metaboxes(){
+    add_meta_box('film_real', 'Réalisateur', 'meta_real', 'film', 'normal');
+    add_meta_box('film_duree', 'Durée', 'meta_duree', 'film', 'normal');
+}
+            function meta_real(){
+  echo '<label for="realisateur">Nom : </label>';
+  echo '<input id="realisateur" type="text" name="realisateur" placeholder="Entrez le nom du réalisateur" required/>';
+}
+               function meta_duree(){
+  echo '<label for="duree">Durée : </label>';
+  echo '<input id="duree" type="text" name="duree" placeholder="Entrer la duree du film" required/>';
+
+               }
 		}
 }
 	//On instancie le nouveau plugin !
