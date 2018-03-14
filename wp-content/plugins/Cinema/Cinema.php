@@ -80,6 +80,21 @@ Class Cinema {
             echo '<input id="duree" type="text" name="duree" placeholder="Entrer la durée du film" required/>';
 
         }
+
+        add_action('save_post','save_metaboxes');
+
+        function save_metaboxes($post_ID){
+
+            // si la metabox est définie, on sauvegarde sa valeur
+
+            if(isset($_POST['realisateur']) && isset($_POST['duree'])){
+
+                update_post_meta($post_ID,'duree', esc_html($_POST['duree']));
+                update_post_meta($post_ID,'realisateur', esc_html($_POST['realisateur']));
+
+            }
+        }
+        add_action('save_post', 'save_metaboxes');
     }
 }
 //On instancie le nouveau plugin !
