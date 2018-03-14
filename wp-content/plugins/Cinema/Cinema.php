@@ -87,11 +87,9 @@ Class Cinema {
         }
 
         add_action('save_post','save_metaboxes');
-        var_dump('hello');
         function save_metaboxes($post_id){
 
             // si la metabox est définie, on sauvegarde sa valeur
-            var_dump('coucuo');
             if(isset($_POST['realisateur'])){
                 update_post_meta($post_id,'realisateur', esc_html($_POST['realisateur']));
             }
