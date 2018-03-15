@@ -89,7 +89,7 @@ Class Cinema {
         }
         function meta_date($post){
             $date = get_post_meta($post->ID,'date',true);
-            echo '<label for="date">Durée : </label>';
+            echo '<label for="date" maxlength="4">Date : </label>';
             echo '<input id="date" type="text" name="date" placeholder="Entrer la date de sortie du film" value="'.$date.'" required/>';
 
         }
