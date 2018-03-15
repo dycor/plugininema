@@ -72,6 +72,7 @@ Class Cinema {
         function initialisation_metaboxes(){
             add_meta_box('film_real', 'Réalisateur', 'meta_real', 'film', 'normal');
             add_meta_box('film_duree', 'Durée', 'meta_duree', 'film', 'normal');
+            add_meta_box('film_date', 'Date de sortie', 'meta_date', 'film', 'normal');
         }
 
         function meta_real($post){
@@ -79,10 +80,17 @@ Class Cinema {
             echo '<label for="realisateur">Nom : </label>';
             echo '<input id="realisateur" type="text" name="realisateur" placeholder="Entrez le nom" value="'.$real.'" required/>';
         }
+
         function meta_duree($post){
             $duree = get_post_meta($post->ID,'duree',true);
             echo '<label for="duree">Durée : </label>';
             echo '<input id="duree" type="text" name="duree" placeholder="Entrer la durée du film" value="'.$duree.'" required/>';
+
+        }
+        function meta_date($post){
+            $date = get_post_meta($post->ID,'date',true);
+            echo '<label for="date">Durée : </label>';
+            echo '<input id="date" type="text" name="date" placeholder="Entrer la date de sortie du film" value="'.$date.'" required/>';
 
         }
 
@@ -95,6 +103,9 @@ Class Cinema {
             }
             if(isset($_POST['duree'])){
                 update_post_meta($post_id,'duree', esc_html($_POST['duree']));
+            }
+            if(isset($_POST['date'])){
+                update_post_meta($post_id,'date', esc_html($_POST['date']));
             }
         }
 
