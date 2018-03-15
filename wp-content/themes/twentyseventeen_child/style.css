@@ -4326,3 +4326,6 @@ p > object:only-child {
 	color: rgb(80,80,80);
 	font-size: 9px;
 }
+.affiche_film{
+	cursor: pointer;
+}

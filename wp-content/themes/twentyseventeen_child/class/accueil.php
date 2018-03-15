@@ -54,8 +54,8 @@ class Accueil
 						echo "<span class='titre-affiche-film'>";
 						echo the_title() . "<BR>";
 						echo "<span class='date-affiche-film'>";
-						echo get_post_meta(get_the_ID(),'date',true);
-						echo "2017</span>";
+							echo get_post_meta(get_the_ID(),'date',true);
+						echo "</span>";
 						echo "</span>";
 						// echo the_title();
 					?></div><?php
